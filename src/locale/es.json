@@ -48,7 +48,8 @@
     "title": "Tienda de semillas",
     "buy": "Comprar",
     "coins": "Monedas",
-    "noCoins": "No tienes suficientes monedas"
+    "noCoins": "No tienes suficientes monedas",
+    "description": "Compra semillas y plantas para personalizar tu jardín virtual. ¡Aumenta tu colección y hazlo único!"
   },
   "notifications": {
     "success": "¡Acción realizada con éxito!",
@@ -60,7 +61,10 @@
     "browser": "Notificaciones del navegador",
     "sessionAlerts": "Alertas de sesión",
     "enable": "Habilitar notificaciones",
-    "blocked": "Notificaciones bloqueadas"
+    "enabled": "Notificaciones habilitadas",
+    "blocked": "Notificaciones bloqueadas",
+    "granted": "¡Notificaciones activadas!",
+    "clickEnable": "Haz clic en 'Habilitar notificaciones' para recibir alertas."
   },
   "settings": {
     "title": "Configuración",
@@ -92,5 +96,10 @@
     "description": "Ingresa tu correo y te enviaremos un enlace para restablecer tu contraseña.",
     "sending": "Enviando...",
     "sendLink": "Enviar enlace de restablecimiento"
+  },
+  "accessibility": {
+    "darkMode": "Cambiar a modo oscuro",
+    "lightMode": "Cambiar a modo claro",
+    "themeToggle": "Alternar tema"
   }
 }

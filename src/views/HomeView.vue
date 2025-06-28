@@ -3,10 +3,10 @@
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <!-- Header de bienvenida -->
       <div class="text-center mb-8">
-        <h1 class="text-4xl font-bold text-gray-900 mb-4">
+        <h1 class="text-4xl font-bold mb-4" style="color: var(--text-primary);">
           {{ $t('welcome') }} 🌱
         </h1>
-        <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+        <p class="text-lg max-w-2xl mx-auto" style="color: var(--text-secondary);">
           {{ $t('home.description') || 'Usa la técnica Pomodoro para ser más productivo y haz crecer tu jardín virtual. Cada sesión completada te dará monedas para comprar nuevas plantas.' }}
         </p>
       </div>
@@ -19,15 +19,15 @@
           
           <!-- Estadísticas rápidas -->
           <div class="card p-6">
-            <h3 class="text-lg font-semibold text-gray-800 mb-4">📊 {{ $t('home.stats') || 'Estadísticas de hoy' }}</h3>
+            <h3 class="text-lg font-semibold mb-4" style="color: var(--text-primary);">📊 {{ $t('home.stats') || 'Estadísticas de hoy' }}</h3>
             <div class="grid grid-cols-2 gap-4">
-              <div class="text-center p-4 bg-primary-50 rounded-lg">
-                <div class="text-2xl font-bold text-primary-600">{{ sessionCount }}</div>
-                <div class="text-sm text-gray-600">{{ $t('home.sessions') || 'Sesiones' }}</div>
+              <div class="text-center p-4 rounded-lg" style="background: var(--bg-accent);">
+                <div class="text-2xl font-bold" style="color: var(--text-accent);">{{ sessionCount }}</div>
+                <div class="text-sm" style="color: var(--text-secondary);">{{ $t('home.sessions') || 'Sesiones' }}</div>
               </div>
-              <div class="text-center p-4 bg-accent-50 rounded-lg">
-                <div class="text-2xl font-bold text-accent-600">{{ authStore.currentUser?.coins || 0 }}</div>
-                <div class="text-sm text-gray-600">{{ $t('shop.coins') }}</div>
+              <div class="text-center p-4 rounded-lg" style="background: var(--bg-accent);">
+                <div class="text-2xl font-bold" style="color: var(--warning);">{{ authStore.currentUser?.coins || 0 }}</div>
+                <div class="text-sm" style="color: var(--text-secondary);">{{ $t('shop.coins') }}</div>
               </div>
             </div>
           </div>
@@ -37,10 +37,11 @@
         <div class="space-y-6">
           <div class="card p-6">
             <div class="flex justify-between items-center mb-4">
-              <h3 class="text-lg font-semibold text-gray-800">🌸 Tu Jardín</h3>
+              <h3 class="text-lg font-semibold" style="color: var(--text-primary);">🌸 Tu Jardín</h3>
               <router-link
                 to="/garden"
-                class="text-sm text-primary-600 hover:text-primary-700 font-medium"
+                class="text-sm font-medium hover:underline"
+                style="color: var(--text-accent);"
               >
                 Ver completo →
               </router-link>
@@ -101,7 +102,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 import { useAuthStore } from '../stores/auth'
 import { usePomodoroStore } from '../stores/pomodoro'
 import PomodoroTimer from '../components/PomodoroTimer.vue'
@@ -128,7 +129,7 @@ const gardenPreview = ['🌻', '🌹', '🌵', '🌸', '🌿', '🍀', '🌳', '
 
 const getRandomPlant = (position: number) => {
   // Simular algunas plantas plantadas basado en la posición
-  const hasPlant = (position + authStore.currentUser?.totalSessions || 0) % 4 === 0
+  const hasPlant = (position + (authStore.currentUser?.totalSessions || 0)) % 4 === 0
   if (hasPlant) {
     return gardenPreview[position % gardenPreview.length]
   }

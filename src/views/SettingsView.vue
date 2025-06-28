@@ -2,10 +2,10 @@
   <div class="min-h-screen py-8">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-8">
-        <h1 class="text-4xl font-bold text-gray-900 mb-4">
+        <h1 class="text-4xl font-bold mb-4" style="color: var(--text-primary);">
           ⚙️ {{ $t('settings.title') }}
         </h1>
-        <p class="text-lg text-gray-600">
+        <p class="text-lg" style="color: var(--text-secondary);">
           {{ $t('settings.description') || 'Personaliza tu experiencia de productividad' }}
         </p>
       </div>
@@ -13,11 +13,11 @@
       <div class="space-y-8">
         <!-- Configuración del Pomodoro -->
         <div class="card p-6">
-          <h2 class="text-xl font-semibold text-gray-900 mb-6">🍅 {{ $t('pomodoro.title') }}</h2>
+          <h2 class="text-xl font-semibold mb-6" style="color: var(--text-primary);">🍅 {{ $t('pomodoro.title') }}</h2>
           
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2">
+              <label class="block text-sm font-medium mb-2" style="color: var(--text-primary);">
                 {{ $t('settings.workDuration') || 'Duración del trabajo (minutos)' }}
               </label>
               <input
@@ -30,7 +30,7 @@
             </div>
 
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2">
+              <label class="block text-sm font-medium mb-2" style="color: var(--text-primary);">
                 {{ $t('settings.shortBreakDuration') || 'Descanso corto (minutos)' }}
               </label>
               <input
@@ -43,7 +43,7 @@
             </div>
 
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2">
+              <label class="block text-sm font-medium mb-2" style="color: var(--text-primary);">
                 {{ $t('settings.longBreakDuration') || 'Descanso largo (minutos)' }}
               </label>
               <input
@@ -56,7 +56,7 @@
             </div>
 
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2">
+              <label class="block text-sm font-medium mb-2" style="color: var(--text-primary);">
                 {{ $t('settings.longBreakInterval') || 'Intervalo para descanso largo' }}
               </label>
               <input
@@ -137,57 +137,57 @@
 
         <!-- Información de la cuenta -->
         <div class="card p-6">
-          <h2 class="text-xl font-semibold text-gray-900 mb-6">👤 {{ $t('account.title') }}</h2>
+          <h2 class="text-xl font-semibold mb-6" style="color: var(--text-primary);">👤 {{ $t('account.title') }}</h2>
           
           <div v-if="authStore.currentUser" class="space-y-4">
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1">
+              <label class="block text-sm font-medium mb-1" style="color: var(--text-primary);">
                 {{ $t('account.email') || 'Correo electrónico' }}
               </label>
-              <p class="text-gray-900">{{ authStore.currentUser.email }}</p>
+              <p style="color: var(--text-primary);">{{ authStore.currentUser.email }}</p>
             </div>
 
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1">
+              <label class="block text-sm font-medium mb-1" style="color: var(--text-primary);">
                 {{ $t('account.name') || 'Nombre' }}
               </label>
-              <p class="text-gray-900">
+              <p style="color: var(--text-primary);">
                 {{ authStore.currentUser.displayName || 'No especificado' }}
               </p>
             </div>
 
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1">
+              <label class="block text-sm font-medium mb-1" style="color: var(--text-primary);">
                 {{ $t('account.coins') || 'Monedas actuales' }}
               </label>
-              <p class="text-2xl font-bold text-accent-600">
+              <p class="text-2xl font-bold" style="color: var(--warning);">
                 🪙 {{ authStore.currentUser.coins }}
               </p>
             </div>
 
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1">
+              <label class="block text-sm font-medium mb-1" style="color: var(--text-primary);">
                 {{ $t('account.totalSessions') || 'Total de sesiones completadas' }}
               </label>
-              <p class="text-lg font-semibold text-primary-600">
+              <p class="text-lg font-semibold" style="color: var(--text-accent);">
                 {{ authStore.currentUser.totalSessions }}
               </p>
             </div>
 
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1">
+              <label class="block text-sm font-medium mb-1" style="color: var(--text-primary);">
                 {{ $t('account.currentStreak') || 'Racha actual' }}
               </label>
-              <p class="text-lg font-semibold text-orange-600">
+              <p class="text-lg font-semibold" style="color: var(--warning);">
                 🔥 {{ authStore.currentUser.currentStreak }} días
               </p>
             </div>
 
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1">
+              <label class="block text-sm font-medium mb-1" style="color: var(--text-primary);">
                 {{ $t('account.memberSince') || 'Miembro desde' }}
               </label>
-              <p class="text-gray-600">
+              <p style="color: var(--text-secondary);">
                 {{ formatDate(authStore.currentUser.createdAt) }}
               </p>
             </div>
@@ -196,15 +196,15 @@
 
         <!-- Notificaciones -->
         <div class="card p-6">
-          <h2 class="text-xl font-semibold text-gray-900 mb-6">🔔 {{ $t('notifications.title') }}</h2>
+          <h2 class="text-xl font-semibold mb-6" style="color: var(--text-primary);">🔔 {{ $t('notifications.title') }}</h2>
           
           <div class="space-y-4">
             <div class="flex items-center justify-between">
               <div>
-                <h3 class="text-sm font-medium text-gray-900">
+                <h3 class="text-sm font-medium" style="color: var(--text-primary);">
                   {{ $t('notifications.browser') || 'Notificaciones del navegador' }}
                 </h3>
-                <p class="text-sm text-gray-500">
+                <p class="text-sm" style="color: var(--text-secondary);">
                   {{ $t('notifications.sessionAlerts') || 'Recibe alertas cuando terminen las sesiones' }}
                 </p>
               </div>
@@ -222,14 +222,14 @@
               </div>
             </div>
 
-            <div class="text-sm text-gray-600">
-              <p v-if="notificationPermission === 'granted'" class="text-green-600">
+            <div class="text-sm">
+              <p v-if="notificationPermission === 'granted'" style="color: var(--success);">
                 ✅ {{ $t('notifications.granted') }}
               </p>
-              <p v-else-if="notificationPermission === 'denied'" class="text-red-600">
+              <p v-else-if="notificationPermission === 'denied'" style="color: var(--error);">
                 ❌ {{ $t('notifications.blocked') }}
               </p>
-              <p v-else class="text-yellow-600">
+              <p v-else style="color: var(--warning);">
                 ⚠️ {{ $t('notifications.clickEnable') }}
               </p>
             </div>

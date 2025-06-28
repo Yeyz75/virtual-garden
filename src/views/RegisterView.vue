@@ -3,10 +3,10 @@
     <div class="max-w-md w-full space-y-8">
       <div class="text-center">
         <div class="text-6xl mb-4">🌱</div>
-        <h2 class="text-3xl font-bold text-gray-900">
+        <h2 class="text-3xl font-bold" style="color: var(--text-primary);">
           {{ $t('register.title') }}
         </h2>
-        <p class="mt-2 text-gray-600">
+        <p class="mt-2" style="color: var(--text-secondary);">
           {{ $t('register.description') || 'Crea tu cuenta y comienza tu viaje de productividad' }}
         </p>
       </div>
@@ -14,7 +14,7 @@
       <div class="card p-8">
         <form @submit.prevent="handleRegister" class="space-y-6">
           <div>
-            <label for="displayName" class="block text-sm font-medium text-gray-700 mb-2">
+            <label for="displayName" class="block text-sm font-medium mb-2" style="color: var(--text-primary);">
               {{ $t('register.name') }} ({{ $t('register.optional') || 'opcional' }})
             </label>
             <input
@@ -27,7 +27,7 @@
           </div>
 
           <div>
-            <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
+            <label for="email" class="block text-sm font-medium mb-2" style="color: var(--text-primary);">
               {{ $t('register.email') }}
             </label>
             <input
@@ -39,13 +39,13 @@
               :class="{ 'border-red-500': errors.email }"
               placeholder="tu@email.com"
             />
-            <p v-if="errors.email" class="mt-1 text-sm text-red-600">
+            <p v-if="errors.email" class="mt-1 text-sm" style="color: var(--error);">
               {{ errors.email }}
             </p>
           </div>
 
           <div>
-            <label for="password" class="block text-sm font-medium text-gray-700 mb-2">
+            <label for="password" class="block text-sm font-medium mb-2" style="color: var(--text-primary);">
               {{ $t('register.password') }}
             </label>
             <input
@@ -57,13 +57,13 @@
               :class="{ 'border-red-500': errors.password }"
               placeholder="Mínimo 6 caracteres"
             />
-            <p v-if="errors.password" class="mt-1 text-sm text-red-600">
+            <p v-if="errors.password" class="mt-1 text-sm" style="color: var(--error);">
               {{ errors.password }}
             </p>
           </div>
 
           <div>
-            <label for="confirmPassword" class="block text-sm font-medium text-gray-700 mb-2">
+            <label for="confirmPassword" class="block text-sm font-medium mb-2" style="color: var(--text-primary);">
               {{ $t('register.confirmPassword') }}
             </label>
             <input
@@ -75,7 +75,7 @@
               :class="{ 'border-red-500': errors.confirmPassword }"
               placeholder="Repite tu contraseña"
             />
-            <p v-if="errors.confirmPassword" class="mt-1 text-sm text-red-600">
+            <p v-if="errors.confirmPassword" class="mt-1 text-sm" style="color: var(--error);">
               {{ errors.confirmPassword }}
             </p>
           </div>
@@ -116,9 +116,9 @@
         </div>
 
         <div class="mt-6 text-center">
-          <p class="text-sm text-gray-600">
+          <p class="text-sm" style="color: var(--text-secondary);">
             ¿Ya tienes una cuenta?
-            <router-link to="/login" class="font-medium text-primary-600 hover:text-primary-500">
+            <router-link to="/login" class="font-medium" style="color: var(--text-accent);">
               Inicia sesión aquí
             </router-link>
           </p>

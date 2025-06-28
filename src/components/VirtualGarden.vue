@@ -1,11 +1,11 @@
 <template>
   <div class="card p-6">
     <div class="flex justify-between items-center mb-6">
-      <h2 class="text-2xl font-bold text-gray-800">
+      <h2 class="text-2xl font-bold" style="color: var(--text-primary);">
         🌱 {{ $t('garden.title') }}
       </h2>
       <div class="flex items-center space-x-4">
-        <span class="text-sm text-gray-600">
+        <span class="text-sm" style="color: var(--text-secondary);">
           {{ totalPlants }} plantas
         </span>
         <button
@@ -220,7 +220,11 @@ onMounted(() => {
 
 <style scoped>
 .plant-display {
-  @apply transition-transform duration-200 hover:scale-110;
+  transition: transform 0.2s ease;
+}
+
+.plant-display:hover {
+  transform: scale(1.1);
 }
 
 .plant-card:hover {

@@ -7,6 +7,11 @@
           :key="notification.id"
           class="notification-toast max-w-sm w-full shadow-lg rounded-lg pointer-events-auto overflow-hidden"
           :class="getNotificationClass(notification.type)"
+          :style="{ 
+            background: 'var(--bg-secondary)', 
+            borderColor: 'var(--border-primary)',
+            color: 'var(--text-primary)'
+          }"
         >
           <div class="p-4">
             <div class="flex items-start">
@@ -34,7 +39,6 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
 import {
   CheckCircleIcon,
   InformationCircleIcon,
@@ -50,10 +54,10 @@ const { notifications, removeNotification } = notificationStore
 
 const getNotificationClass = (type: string) => {
   const classes = {
-    success: 'bg-green-50 border border-green-200 text-green-800',
-    info: 'bg-blue-50 border border-blue-200 text-blue-800',
-    warning: 'bg-yellow-50 border border-yellow-200 text-yellow-800',
-    error: 'bg-red-50 border border-red-200 text-red-800'
+    success: 'border-2 notification-success',
+    info: 'border-2 notification-info', 
+    warning: 'border-2 notification-warning',
+    error: 'border-2 notification-error'
   }
   return classes[type as keyof typeof classes] || classes.info
 }
@@ -68,3 +72,49 @@ const getIcon = (type: string) => {
   return icons[type as keyof typeof icons] || InformationCircleIcon
 }
 </script>
+
+<style scoped>
+.notification-toast {
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 25px var(--shadow-medium);
+}
+
+.notification-success {
+  border-color: var(--success);
+  background: color-mix(in srgb, var(--success) 10%, var(--bg-secondary));
+}
+
+.notification-info {
+  border-color: var(--info);
+  background: color-mix(in srgb, var(--info) 10%, var(--bg-secondary));
+}
+
+.notification-warning {
+  border-color: var(--warning);
+  background: color-mix(in srgb, var(--warning) 10%, var(--bg-secondary));
+}
+
+.notification-error {
+  border-color: var(--error);
+  background: color-mix(in srgb, var(--error) 10%, var(--bg-secondary));
+}
+
+/* Fallback para navegadores que no soportan color-mix */
+@supports not (color: color-mix(in srgb, red, blue)) {
+  .notification-success {
+    background: var(--bg-secondary);
+  }
+  
+  .notification-info {
+    background: var(--bg-secondary);
+  }
+  
+  .notification-warning {
+    background: var(--bg-secondary);
+  }
+  
+  .notification-error {
+    background: var(--bg-secondary);
+  }
+}
+</style>

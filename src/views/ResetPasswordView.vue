@@ -3,12 +3,12 @@
     <div class="card w-full max-w-md p-8 flex flex-col items-center">
       <div class="flex flex-col items-center mb-6">
         <span class="text-4xl mb-2">🔒</span>
-        <h2 class="text-2xl font-bold text-primary-700 mb-1 text-center">{{ $t('resetPassword.title') || 'Restablecer contraseña' }}</h2>
-        <p class="text-gray-500 text-center text-sm">{{ $t('resetPassword.description') || 'Ingresa tu correo y te enviaremos un enlace para restablecer tu contraseña.' }}</p>
+        <h2 class="text-2xl font-bold mb-1 text-center" style="color: var(--text-accent);">{{ $t('resetPassword.title') || 'Restablecer contraseña' }}</h2>
+        <p class="text-center text-sm" style="color: var(--text-secondary);">{{ $t('resetPassword.description') || 'Ingresa tu correo y te enviaremos un enlace para restablecer tu contraseña.' }}</p>
       </div>
       <form @submit.prevent="handleReset" class="w-full flex flex-col gap-4">
         <div>
-          <label class="block mb-1 text-sm font-medium text-gray-700">{{ $t('login.email') }}</label>
+          <label class="block mb-1 text-sm font-medium" style="color: var(--text-primary);">{{ $t('login.email') }}</label>
           <input
             v-model="email"
             type="email"
@@ -27,12 +27,12 @@
         </button>
       </form>
       <transition name="fade">
-        <p v-if="message" class="mt-4 text-green-600 text-center">{{ message }}</p>
+        <p v-if="message" class="mt-4 text-center" style="color: var(--success);">{{ message }}</p>
       </transition>
       <transition name="fade">
-        <p v-if="error" class="mt-4 text-red-600 text-center">{{ error }}</p>
+        <p v-if="error" class="mt-4 text-center" style="color: var(--error);">{{ error }}</p>
       </transition>
-      <router-link to="/login" class="block mt-6 text-center text-primary-600 hover:underline">{{ $t('login.title') }}</router-link>
+      <router-link to="/login" class="block mt-6 text-center hover:underline" style="color: var(--text-accent);">{{ $t('login.title') }}</router-link>
     </div>
   </div>
 </template>

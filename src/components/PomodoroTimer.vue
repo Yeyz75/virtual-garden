@@ -1,10 +1,10 @@
 <template>
   <div class="card p-8 max-w-md mx-auto">
     <div class="text-center mb-6">
-      <h2 class="text-2xl font-bold text-gray-800 mb-2">
+      <h2 class="text-2xl font-bold mb-2" style="color: var(--text-primary);">
         {{ currentMode === "work" ? `🍅 ${$t('pomodoro.work')}` : `☕ ${$t('pomodoro.break')}` }}
       </h2>
-      <div class="text-5xl font-bold text-primary-600 mb-4">
+      <div class="text-5xl font-bold mb-4" :style="{ color: currentMode === 'work' ? 'var(--success)' : 'var(--warning)' }">
         {{ formattedTime }}
       </div>
 
@@ -15,7 +15,7 @@
             cx="60"
             cy="60"
             r="50"
-            stroke="#e5e7eb"
+            :stroke="'var(--border-primary)'"
             stroke-width="8"
             fill="none"
           />
@@ -23,7 +23,7 @@
             cx="60"
             cy="60"
             r="50"
-            :stroke="currentMode === 'work' ? '#10b981' : '#f59e0b'"
+            :stroke="currentMode === 'work' ? 'var(--success)' : 'var(--warning)'"
             stroke-width="8"
             fill="none"
             :stroke-dasharray="314"
@@ -33,7 +33,7 @@
           />
         </svg>
         <div class="absolute inset-0 flex items-center justify-center">
-          <span class="text-lg font-semibold text-gray-600">
+          <span class="text-lg font-semibold" style="color: var(--text-secondary);">
             {{ Math.round(progress) }}%
           </span>
         </div>
@@ -47,7 +47,8 @@
       <button
         v-else
         @click="pauseTimer"
-        class="bg-accent-500 hover:bg-accent-600 text-white font-medium py-3 px-6 rounded-lg"
+        class="btn-secondary"
+        style="background: var(--warning); color: white; border: none;"
       >
         {{ $t('pomodoro.pause') }}
       </button>

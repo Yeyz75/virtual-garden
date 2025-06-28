@@ -4,6 +4,7 @@ export default {
     "./index.html",
     "./src/**/*.{vue,js,ts,jsx,tsx}",
   ],
+  darkMode: 'selector', // Usar selector de clase personalizado
   theme: {
     extend: {
       colors: {
@@ -22,6 +23,19 @@ export default {
         earth: {
           600: '#92400e',
           700: '#78350f',
+        },
+        // Colores personalizados para modo oscuro
+        dark: {
+          50: '#f8fafc',
+          100: '#f1f5f9',
+          200: '#e2e8f0',
+          300: '#cbd5e1',
+          400: '#94a3b8',
+          500: '#64748b',
+          600: '#475569',
+          700: '#334155',
+          800: '#1e293b',
+          900: '#0f172a',
         }
       },
       fontFamily: {
@@ -31,6 +45,9 @@ export default {
         'grow': 'grow 0.8s ease-out',
         'pulse-soft': 'pulse-soft 2s ease-in-out infinite',
         'bounce-soft': 'bounce-soft 1s ease-in-out',
+        'float': 'float 3s ease-in-out infinite',
+        'fade-in': 'fade-in 0.5s ease-out',
+        'slide-up': 'slide-up 0.3s ease-out',
       },
       keyframes: {
         grow: {
@@ -44,7 +61,26 @@ export default {
         'bounce-soft': {
           '0%, 100%': { transform: 'translateY(0)' },
           '50%': { transform: 'translateY(-10px)' },
+        },
+        'float': {
+          '0%, 100%': { transform: 'translateY(0) rotate(0deg)' },
+          '50%': { transform: 'translateY(-20px) rotate(180deg)' },
+        },
+        'fade-in': {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
+        'slide-up': {
+          '0%': { transform: 'translateY(10px)', opacity: '0' },
+          '100%': { transform: 'translateY(0)', opacity: '1' },
         }
+      },
+      spacing: {
+        '18': '4.5rem',
+        '88': '22rem',
+      },
+      backdropBlur: {
+        xs: '2px',
       }
     },
   },

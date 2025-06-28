@@ -3,10 +3,10 @@
     <div class="max-w-md w-full space-y-8">
       <div class="text-center">
         <div class="text-6xl mb-4">🌱</div>
-        <h2 class="text-3xl font-bold text-gray-900">
+        <h2 class="text-3xl font-bold" style="color: var(--text-primary);">
           {{ $t('login.title') }}
         </h2>
-        <p class="mt-2 text-gray-600">
+        <p class="mt-2" style="color: var(--text-secondary);">
           {{ $t('login.description') || 'Inicia sesión para continuar cultivando tu productividad' }}
         </p>
       </div>
@@ -14,7 +14,7 @@
       <div class="card p-8">
         <form @submit.prevent="handleLogin" class="space-y-6">
           <div>
-            <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
+            <label for="email" class="block text-sm font-medium mb-2" style="color: var(--text-primary);">
               {{ $t('login.email') }}
             </label>
             <input
@@ -26,13 +26,13 @@
               :class="{ 'border-red-500': errors.email }"
               placeholder="tu@email.com"
             />
-            <p v-if="errors.email" class="mt-1 text-sm text-red-600">
+            <p v-if="errors.email" class="mt-1 text-sm" style="color: var(--error);">
               {{ errors.email }}
             </p>
           </div>
 
           <div>
-            <label for="password" class="block text-sm font-medium text-gray-700 mb-2">
+            <label for="password" class="block text-sm font-medium mb-2" style="color: var(--text-primary);">
               {{ $t('login.password') }}
             </label>
             <input
@@ -44,7 +44,7 @@
               :class="{ 'border-red-500': errors.password }"
               placeholder="Tu contraseña"
             />
-            <p v-if="errors.password" class="mt-1 text-sm text-red-600">
+            <p v-if="errors.password" class="mt-1 text-sm" style="color: var(--error);">
               {{ errors.password }}
             </p>
           </div>

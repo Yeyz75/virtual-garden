@@ -1,12 +1,13 @@
 <template>
-  <header class="bg-white shadow-sm border-b border-gray-200">
+  <header class="bg-white shadow-sm border-b border-gray-200 dark:bg-slate-800 dark:border-slate-700"
+          style="background: var(--bg-secondary); border-color: var(--border-primary);">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center h-16">
         <!-- Logo y navegación -->
         <div class="flex items-center space-x-8">
           <router-link to="/" class="flex items-center space-x-2">
             <span class="text-2xl">🌱</span>
-            <span class="text-xl font-bold text-gray-900">
+            <span class="text-xl font-bold" style="color: var(--text-primary);">
               Jardín Virtual
             </span>
           </router-link>
@@ -80,12 +81,32 @@
               </div>
             </div>
           </div>
+
+          <!-- Botón modo oscuro -->
+          <button
+            @click="toggleTheme"
+            class="theme-toggle ml-2 relative overflow-hidden"
+            :aria-label="isDark ? $t('accessibility.lightMode') : $t('accessibility.darkMode')"
+            :title="isDark ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'"
+          >
+            <div class="flex items-center gap-2 px-3 py-2 rounded-full transition-all duration-300"
+                 :class="isDark ? 'bg-gray-800 text-yellow-300' : 'bg-yellow-100 text-gray-800'">
+              <transition name="icon" mode="out-in">
+                <span v-if="isDark" key="moon" class="text-lg">🌙</span>
+                <span v-else key="sun" class="text-lg">☀️</span>
+              </transition>
+              <span class="text-sm font-medium hidden sm:inline">
+                {{ isDark ? 'Modo claro' : 'Modo oscuro' }}
+              </span>
+            </div>
+          </button>
+          <!-- Fin botón modo oscuro -->
         </div>
       </div>
     </div>
 
     <!-- Navegación móvil -->
-    <div class="md:hidden bg-gray-50 border-t border-gray-200">
+    <div class="md:hidden border-t" style="background: var(--bg-tertiary); border-color: var(--border-primary);">
       <nav class="flex justify-around py-2">
         <router-link
           to="/"
@@ -121,9 +142,11 @@ import { ref, onMounted, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { ChevronDownIcon } from '@heroicons/vue/24/outline'
 import { useAuthStore } from '../stores/auth'
+import { useDarkMode } from '@/composables/useDarkMode'
 
 const router = useRouter()
 const authStore = useAuthStore()
+const { isDark, toggleTheme } = useDarkMode()
 
 const showUserMenu = ref(false)
 
@@ -156,17 +179,60 @@ onUnmounted(() => {
 
 <style scoped>
 .nav-link {
-  color: #4b5563;
+  color: var(--text-secondary);
   font-weight: 500;
-  transition-property: color;
-  transition-duration: 200ms;
+  transition: color 0.2s ease;
 }
 
 .nav-link:hover {
-  color: #111827;
+  color: var(--text-primary);
 }
 
 .nav-link.router-link-active {
-  color: #059669;
+  color: var(--text-accent);
+}
+
+/* Animaciones para el toggle de tema */
+.icon-enter-active,
+.icon-leave-active {
+  transition: all 0.3s ease;
+}
+
+.icon-enter-from {
+  opacity: 0;
+  transform: rotate(180deg) scale(0.5);
+}
+
+.icon-leave-to {
+  opacity: 0;
+  transform: rotate(-180deg) scale(0.5);
+}
+
+.theme-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.05);
+}
+
+.theme-toggle:active {
+  transform: scale(0.95);
+}
+
+/* Mejoras para modo oscuro */
+[data-theme="dark"] .nav-link {
+  color: var(--text-secondary);
+}
+
+[data-theme="dark"] .nav-link:hover {
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .nav-link.router-link-active {
+  color: var(--text-accent);
 }
 </style>
