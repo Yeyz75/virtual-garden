@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    line-height: 1.6;
+    color: #1f2937;
+    background: linear-gradient(135deg, #ecfdf5 0%, #f0fdf4 100%);
+    min-height: 100vh;
+  }
+
+  button {
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+  }
+
+  button:hover {
+    transform: translateY(-1px);
+  }
+
+  button:active {
+    transform: translateY(0);
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-primary-500 hover:bg-primary-600 text-white font-medium py-3 px-6 rounded-lg shadow-md transition-all duration-200 transform hover:scale-105;
+  }
+
+  .btn-secondary {
+    @apply bg-white hover:bg-gray-50 text-gray-900 font-medium py-3 px-6 rounded-lg border border-gray-300 shadow-sm transition-all duration-200;
+  }
+
+  .card {
+    @apply bg-white rounded-xl shadow-lg border border-gray-100 transition-all duration-300 hover:shadow-xl;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200;
+  }
+}
+
+/* Animaciones personalizadas */
+.plant-enter-active {
+  animation: grow 0.8s ease-out;
+}
+
+.notification-enter-active,
+.notification-leave-active {
+  transition: all 0.3s ease;
+}
+
+.notification-enter-from {
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+.notification-leave-to {
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+/* Estilos para el jardín */
+.garden-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  gap: 16px;
+  padding: 24px;
+  background: linear-gradient(45deg, #92400e, #78350f);
+  border-radius: 16px;
+  min-height: 300px;
+}
+
+.plant-slot {
+  @apply aspect-square bg-gradient-to-br from-amber-100 to-amber-200 rounded-lg border-2 border-amber-300 flex items-center justify-center relative overflow-hidden;
+  transition: all 0.3s ease;
+}
+
+.plant-slot:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.plant-slot.occupied {
+  @apply bg-gradient-to-br from-green-100 to-green-200 border-green-300;
+}
