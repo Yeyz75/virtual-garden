@@ -84,6 +84,12 @@
           </button>
         </div>
 
+        <div class="mt-4 text-center">
+          <router-link to="/reset-password" class="text-blue-600 hover:underline text-sm">
+            ¿Olvidaste tu contraseña?
+          </router-link>
+        </div>
+
         <div class="mt-6 text-center">
           <p class="text-sm text-gray-600">
             ¿No tienes una cuenta?

@@ -7,6 +7,7 @@ import {
   GoogleAuthProvider,
   signOut,
   onAuthStateChanged,
+  sendPasswordResetEmail,
   User as FirebaseUser,
 } from "firebase/auth";
 import {
@@ -168,6 +169,15 @@ export const useAuthStore = defineStore("auth", () => {
     }
   };
 
+  // Restablecer contraseña
+  const resetPassword = async (email: string) => {
+    try {
+      await sendPasswordResetEmail(auth, email);
+    } catch (error) {
+      throw error;
+    }
+  };
+
   // Actualizar monedas del usuario
   const updateCoins = async (amount: number) => {
     if (currentUser.value) {
@@ -199,5 +209,6 @@ export const useAuthStore = defineStore("auth", () => {
     loginWithGoogle,
     logout,
     updateCoins,
+    resetPassword,
   };
 });
