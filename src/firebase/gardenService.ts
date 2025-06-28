@@ -14,7 +14,7 @@ export const createUserGarden = async (userId: string): Promise<UserGarden> => {
   const gardenData: UserGarden = {
     userId,
     layout: "small",
-    totalSlots: 6,
+    totalSlots: 16, // coherente con el store
     plantsCount: 0,
     createdAt: new Date(),
     updatedAt: new Date(),
@@ -41,7 +41,26 @@ export const getUserGarden = async (
   try {
     const gardenDoc = await getDoc(doc(db, "gardens", userId));
     if (gardenDoc.exists()) {
-      return gardenDoc.data() as UserGarden;
+      const data = gardenDoc.data();
+      return {
+        userId: data.userId,
+        layout: data.layout,
+        totalSlots: data.totalSlots ?? 16,
+        plantsCount: data.plantsCount ?? (data.plants ? data.plants.length : 0),
+        createdAt: data.createdAt?.toDate
+          ? data.createdAt.toDate()
+          : new Date(),
+        updatedAt: data.updatedAt?.toDate
+          ? data.updatedAt.toDate()
+          : new Date(),
+        plants: (data.plants || []).map((p: any) => ({
+          ...p,
+          plantedAt: p.plantedAt?.toDate ? p.plantedAt.toDate() : new Date(),
+          lastWatered: p.lastWatered?.toDate
+            ? p.lastWatered.toDate()
+            : undefined,
+        })),
+      };
     }
     return null;
   } catch (error) {

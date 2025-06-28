@@ -1,4 +1,4 @@
-import { collection, doc, writeBatch } from "firebase/firestore";
+import { collection, doc, writeBatch, getDocs } from "firebase/firestore";
 import { db } from "./config";
 
 // Datos iniciales para la colección de plantas
@@ -261,9 +261,8 @@ export const seedDatabase = async () => {
 export const isDatabaseSeeded = async (): Promise<boolean> => {
   try {
     const plantsCollection = collection(db, "plants");
-    // Aquí podrías hacer una query para verificar si ya existen plantas
-    // Por simplicidad, asumimos que si no hay error, está bien
-    return false; // Cambiar esto por una verificación real si es necesario
+    const snapshot = await getDocs(plantsCollection);
+    return !snapshot.empty;
   } catch (error) {
     console.error("Error verificando estado de la base de datos:", error);
     return false;
