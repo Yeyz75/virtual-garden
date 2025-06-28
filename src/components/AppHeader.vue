@@ -48,7 +48,7 @@
             
             <div class="relative">
               <button
-                @click="showUserMenu = !showUserMenu"
+                @click.stop="showUserMenu = !showUserMenu"
                 class="flex items-center space-x-2 p-2 rounded-lg hover:bg-gray-100 transition-colors"
               >
                 <div class="w-8 h-8 bg-primary-500 rounded-full flex items-center justify-center">
@@ -68,7 +68,6 @@
                 <router-link
                   to="/settings"
                   class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                  @click="showUserMenu = false"
                 >
                   Configuración
                 </router-link>
@@ -140,7 +139,7 @@ const handleLogout = async () => {
   showUserMenu.value = false
 }
 
-const closeUserMenu = (event: Event) => {
+const closeUserMenu = () => {
   if (showUserMenu.value) {
     showUserMenu.value = false
   }
@@ -157,10 +156,17 @@ onUnmounted(() => {
 
 <style scoped>
 .nav-link {
-  @apply text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200;
+  color: #4b5563;
+  font-weight: 500;
+  transition-property: color;
+  transition-duration: 200ms;
+}
+
+.nav-link:hover {
+  color: #111827;
 }
 
 .nav-link.router-link-active {
-  @apply text-primary-600;
+  color: #059669;
 }
 </style>

@@ -331,13 +331,27 @@ const requestNotificationPermission = async () => {
   }
 }
 
-const formatDate = (date: Date | string) => {
-  const d = typeof date === 'string' ? new Date(date) : date
-  return d.toLocaleDateString('es-ES', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  })
+const formatDate = (date: any) => {
+  // Firestore Timestamp
+  if (date && typeof date === 'object' && typeof date.toDate === 'function') {
+    date = date.toDate();
+  }
+  // String
+  if (typeof date === 'string') {
+    const parsed = new Date(date);
+    if (!isNaN(parsed.getTime())) {
+      date = parsed;
+    }
+  }
+  // Date
+  if (date instanceof Date && !isNaN(date.getTime())) {
+    return date.toLocaleDateString('es-ES', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+  }
+  return 'Fecha desconocida';
 }
 
 onMounted(() => {
