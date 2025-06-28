@@ -2,12 +2,12 @@
   <div class="card p-8 max-w-md mx-auto">
     <div class="text-center mb-6">
       <h2 class="text-2xl font-bold text-gray-800 mb-2">
-        {{ currentMode === 'work' ? '🍅 Trabajando' : '☕ Descansando' }}
+        {{ currentMode === "work" ? "🍅 Trabajando" : "☕ Descansando" }}
       </h2>
       <div class="text-5xl font-bold text-primary-600 mb-4">
         {{ formattedTime }}
       </div>
-      
+
       <!-- Barra de progreso circular -->
       <div class="relative w-32 h-32 mx-auto mb-6">
         <svg class="w-32 h-32 transform -rotate-90" viewBox="0 0 120 120">
@@ -41,12 +41,8 @@
     </div>
 
     <div class="flex justify-center space-x-4 mb-6">
-      <button
-        v-if="!isRunning"
-        @click="startTimer"
-        class="btn-primary"
-      >
-        {{ isPaused ? 'Reanudar' : 'Iniciar' }}
+      <button v-if="!isRunning" @click="startTimer" class="btn-primary">
+        {{ isPaused ? "Reanudar" : "Iniciar" }}
       </button>
       <button
         v-else
@@ -55,17 +51,15 @@
       >
         Pausar
       </button>
-      <button
-        @click="resetTimer"
-        class="btn-secondary"
-      >
-        Reiniciar
-      </button>
+      <button @click="resetTimer" class="btn-secondary">Reiniciar</button>
     </div>
 
     <div class="text-center text-sm text-gray-600">
       <p>Sesión {{ sessionCount + 1 }}</p>
-      <p v-if="authStore.currentUser" class="flex items-center justify-center mt-2">
+      <p
+        v-if="authStore.currentUser"
+        class="flex items-center justify-center mt-2"
+      >
         <span class="mr-2">🪙</span>
         {{ authStore.currentUser.coins }} monedas
       </p>
@@ -74,11 +68,12 @@
 </template>
 
 <script setup lang="ts">
-import { usePomodoroStore } from '../stores/pomodoro'
-import { useAuthStore } from '../stores/auth'
+import { usePomodoroStore } from "../stores/pomodoro";
+import { useAuthStore } from "../stores/auth";
+import { storeToRefs } from "pinia";
 
-const pomodoroStore = usePomodoroStore()
-const authStore = useAuthStore()
+const pomodoroStore = usePomodoroStore();
+const authStore = useAuthStore();
 
 const {
   isRunning,
@@ -86,8 +81,8 @@ const {
   formattedTime,
   progress,
   currentMode,
-  sessionCount
-} = pomodoroStore
+  sessionCount,
+} = storeToRefs(pomodoroStore);
 
-const { startTimer, pauseTimer, resetTimer } = pomodoroStore
+const { startTimer, pauseTimer, resetTimer } = pomodoroStore;
 </script>
