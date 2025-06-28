@@ -55,13 +55,13 @@
       <button @click="resetTimer" class="btn-secondary">{{ $t('pomodoro.reset') }}</button>
     </div>
 
-    <div class="text-center text-sm text-gray-600">
+    <div class="text-center text-sm text-gray-600" style="color: var(--text-secondary);">
       <p>Sesión {{ sessionCount + 1 }}</p>
       <p
         v-if="authStore.currentUser"
         class="flex items-center justify-center mt-2"
       >
-        <span class="mr-2">🪙</span>
+        <span class="mr-2" style="color: var(--text-secondary);">🪙</span>
         {{ authStore.currentUser.coins }} {{ $t('shop.coins') }}
       </p>
     </div>

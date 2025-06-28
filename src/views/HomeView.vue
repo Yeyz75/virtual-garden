@@ -60,14 +60,14 @@
               </div>
             </div>
             
-            <p class="text-sm text-gray-600 text-center">
+            <p class="text-sm text-gray-600 text-center" style="color: var(--text-secondary);">
               Completa sesiones de trabajo para ganar plantas y hacer crecer tu jardín
             </p>
           </div>
 
           <!-- Acciones rápidas -->
           <div class="card p-6">
-            <h3 class="text-lg font-semibold text-gray-800 mb-4">⚡ Acciones rápidas</h3>
+            <h3 class="text-lg font-semibold text-gray-800 mb-4" style="color: var(--text-primary);">⚡ Acciones rápidas</h3>
             <div class="space-y-3">
               <router-link
                 to="/garden"
