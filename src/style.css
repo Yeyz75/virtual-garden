@@ -11,11 +11,11 @@
 
   :root {
     /* Paleta de colores para modo claro */
-    --bg-primary: #fafafa;
-    --bg-secondary: #ffffff;
-    --bg-tertiary: #f8fafc;
-    --bg-accent: #f0fdf4;
-    --bg-hover: #f1f5f9;
+    --bg-primary: #e5e7eb;
+    --bg-secondary: #f3f4f6;
+    --bg-tertiary: #e0e7ef;
+    --bg-accent: #d1fae5;
+    --bg-hover: #e2e8f0;
     
     /* Textos */
     --text-primary: #1a202c;
