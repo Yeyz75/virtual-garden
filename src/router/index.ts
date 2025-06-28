@@ -43,28 +43,33 @@ const router = createRouter({
   ]
 })
 
-router.beforeEach(async (to, from, next) => {
-  const authStore = useAuthStore()
-  
-  // Esperar a que se inicialice la autenticación
+// Función auxiliar para esperar a que termine la carga de autenticación
+async function waitForAuthReady(authStore: any) {
   if (authStore.loading) {
-    await new Promise(resolve => {
-      const unsubscribe = authStore.$subscribe((mutation, state) => {
+    await new Promise<void>(resolve => {
+      const unsubscribe = authStore.$subscribe((_: any, state: any) => {
         if (!state.loading) {
           unsubscribe()
-          resolve(undefined)
+          resolve()
         }
       })
     })
   }
+}
+
+// Guard asíncrono moderno
+router.beforeEach(async (to, _) => {
+  const authStore = useAuthStore()
+  await waitForAuthReady(authStore)
 
   if (to.meta.requiresAuth && !authStore.isAuthenticated) {
-    next('/login')
-  } else if (to.meta.requiresGuest && authStore.isAuthenticated) {
-    next('/')
-  } else {
-    next()
+    return { path: '/login' }
   }
+  if (to.meta.requiresGuest && authStore.isAuthenticated) {
+    return { path: '/' }
+  }
+  // Si no hay restricciones, continuar normalmente
+  return true
 })
 
 export default router
