@@ -64,8 +64,8 @@
         >
           <div class="text-center">
             <div class="text-3xl mb-2">{{ plant.emoji }}</div>
-            <div class="text-sm font-medium text-gray-800">{{ plant.name }}</div>
-            <div class="text-xs text-gray-600 mb-2">{{ plant.description }}</div>
+            <div class="text-sm font-medium" style="color: var(--text-secondary);">{{ plant.name }}</div>
+            <div class="text-xs text-gray-600 mb-2" style="color: var(--text-secondary);">{{ plant.description }}</div>
             <div class="flex items-center justify-center text-sm">
               <span class="mr-1">🪙</span>
               <span :class="{ 'text-red-500': !canAfford(plant) }">

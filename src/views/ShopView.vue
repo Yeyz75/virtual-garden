@@ -2,10 +2,10 @@
   <div class="min-h-screen py-8">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-8">
-        <h1 class="text-4xl font-bold text-gray-900 mb-4">
+        <h1 class="text-4xl font-bold text-gray-900 mb-4" style="color: var(--text-secondary);">
           🛍️ {{ $t('shop.title') }}
         </h1>
-        <p class="text-lg text-gray-600">
+        <p class="text-lg text-gray-600" style="color: var(--text-secondary);">
           {{ $t('shop.description') || 'Usa tus monedas ganadas o compra paquetes premium' }}
         </p>
         
@@ -23,13 +23,13 @@
         <div
           v-for="item in shopItems"
           :key="item.id"
-          class="card p-6 hover:shadow-xl transition-all duration-300"
+          class="card p-6 hover:shadow-xl transition-all duration-300" 
         >
           <div class="text-center">
-            <div class="text-6xl mb-4">{{ item.emoji }}</div>
-            <h3 class="text-xl font-bold text-gray-900 mb-2">{{ item.name }}</h3>
-            <p class="text-gray-600 text-sm mb-4">{{ item.description }}</p>
-            
+            <div class="text-6xl mb-4" style="color: var(--text-secondary);">{{ item.emoji }}</div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2" style="color: var(--text-secondary);">{{ item.name }}</h3>
+            <p class="text-gray-600 text-sm mb-4" style="color: var(--text-secondary);">{{ item.description }}</p>
+
             <div class="mb-4">
               <span 
                 class="inline-block px-3 py-1 rounded-full text-xs font-medium text-white"
@@ -41,14 +41,14 @@
 
             <div class="mb-6">
               <div class="text-2xl font-bold">
-                <span v-if="item.costType === 'coins'" class="text-accent-600">
+                <span v-if="item.costType === 'coins'" class="text-accent-600" style="color: var(--text-secondary);">
                   🪙 {{ item.cost }}
                 </span>
-                <span v-else class="text-green-600">
+                <span v-else class="text-green-600" style="color: var(--text-secondary);">
                   ${{ item.cost }}
                 </span>
               </div>
-              <div class="text-sm text-gray-500">
+              <div class="text-sm text-gray-500" style="color: var(--text-secondary);">
                 {{ item.costType === 'coins' ? 'monedas' : 'USD' }}
               </div>
             </div>
