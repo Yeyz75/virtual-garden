@@ -1,0 +1,87 @@
+{
+  "welcome": "¡Bienvenido a tu Jardín Virtual!",
+  "login": {
+    "title": "Iniciar sesión",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "button": "Entrar",
+    "forgot": "¿Olvidaste tu contraseña?",
+    "noAccount": "¿No tienes cuenta? Regístrate"
+  },
+  "register": {
+    "title": "Crear cuenta",
+    "name": "Nombre",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "confirmPassword": "Confirmar contraseña",
+    "button": "Registrarse",
+    "haveAccount": "¿Ya tienes cuenta? Inicia sesión"
+  },
+  "home": {
+    "description": "Usa la técnica Pomodoro para ser más productivo y haz crecer tu jardín virtual. Cada sesión completada te dará monedas para comprar nuevas plantas.",
+    "stats": "Estadísticas de hoy",
+    "sessions": "Sesiones"
+  },
+  "garden": {
+    "title": "Mi Jardín",
+    "addPlant": "Agregar planta",
+    "water": "Regar",
+    "harvest": "Cosechar",
+    "empty": "Aún no tienes plantas. ¡Agrega una para comenzar!",
+    "description": "Haz crecer tu jardín completando sesiones de productividad",
+    "expand": "Expandir Jardín",
+    "slots": "espacios",
+    "cancel": "Cancelar"
+  },
+  "pomodoro": {
+    "title": "Temporizador Pomodoro",
+    "start": "Iniciar",
+    "pause": "Pausar",
+    "reset": "Reiniciar",
+    "work": "Trabajo",
+    "break": "Descanso"
+  },
+  "shop": {
+    "title": "Tienda de semillas",
+    "buy": "Comprar",
+    "coins": "Monedas",
+    "noCoins": "No tienes suficientes monedas"
+  },
+  "notifications": {
+    "success": "¡Acción realizada con éxito!",
+    "error": "Ha ocurrido un error. Intenta de nuevo.",
+    "plantAdded": "¡Planta agregada a tu jardín!",
+    "plantWatered": "¡Has regado tu planta!",
+    "plantHarvested": "¡Has cosechado tu planta!",
+    "title": "Notificaciones",
+    "browser": "Notificaciones del navegador",
+    "sessionAlerts": "Alertas de sesión",
+    "enable": "Habilitar notificaciones",
+    "blocked": "Notificaciones bloqueadas"
+  },
+  "settings": {
+    "title": "Configuración",
+    "language": "Idioma",
+    "logout": "Cerrar sesión",
+    "description": "Personaliza tu experiencia de productividad",
+    "workDuration": "Duración del trabajo (minutos)",
+    "shortBreakDuration": "Descanso corto (minutos)",
+    "longBreakInterval": "Intervalo para descanso largo (sesiones)",
+    "longBreakDuration": "Duración del descanso largo (minutos)",
+    "autoStartBreaks": "Iniciar descansos automáticamente",
+    "autoStartWork": "Iniciar trabajo automáticamente",
+    "soundEnabled": "Sonido habilitado",
+    "notificationsEnabled": "Notificaciones habilitadas",
+    "saveChanges": "Guardar cambios",
+    "restoreDefaults": "Restaurar valores predeterminados"
+  },
+  "account": {
+    "title": "Mi cuenta",
+    "email": "Correo electrónico",
+    "name": "Nombre",
+    "coins": "{coins}",
+    "totalSessions": "{sessions}",
+    "currentStreak": "{days} días",
+    "memberSince": "Miembro desde {date}"
+  }
+}

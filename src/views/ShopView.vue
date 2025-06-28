@@ -3,17 +3,17 @@
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-8">
         <h1 class="text-4xl font-bold text-gray-900 mb-4">
-          🛍️ Tienda Virtual
+          🛍️ {{ $t('shop.title') }}
         </h1>
         <p class="text-lg text-gray-600">
-          Usa tus monedas ganadas o compra paquetes premium
+          {{ $t('shop.description') || 'Usa tus monedas ganadas o compra paquetes premium' }}
         </p>
         
         <div v-if="authStore.currentUser" class="mt-4">
           <div class="inline-flex items-center bg-accent-50 px-4 py-2 rounded-full">
             <span class="text-2xl mr-2">🪙</span>
             <span class="text-xl font-bold text-accent-700">
-              {{ authStore.currentUser.coins }} monedas
+              {{ authStore.currentUser.coins }} {{ $t('shop.coins') }}
             </span>
           </div>
         </div>

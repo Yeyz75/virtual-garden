@@ -2,7 +2,7 @@
   <div class="card p-6">
     <div class="flex justify-between items-center mb-6">
       <h2 class="text-2xl font-bold text-gray-800">
-        🌱 Mi Jardín Virtual
+        🌱 {{ $t('garden.title') }}
       </h2>
       <div class="flex items-center space-x-4">
         <span class="text-sm text-gray-600">
@@ -12,7 +12,7 @@
           @click="showUpgradeModal = true"
           class="btn-secondary text-sm py-2 px-4"
         >
-          Expandir
+          {{ $t('garden.expand') }}
         </button>
       </div>
     </div>
@@ -49,7 +49,7 @@
 
     <!-- Selector de plantas -->
     <div class="mt-6">
-      <h3 class="text-lg font-semibold text-gray-800 mb-4">Plantar</h3>
+      <h3 class="text-lg font-semibold text-gray-800 mb-4">{{ $t('garden.addPlant') }}</h3>
       <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
         <div
           v-for="plant in availablePlants"
@@ -92,7 +92,7 @@
       @click.self="showUpgradeModal = false"
     >
       <div class="bg-white rounded-xl p-6 max-w-md w-full mx-4">
-        <h3 class="text-xl font-bold text-gray-800 mb-4">Expandir Jardín</h3>
+        <h3 class="text-xl font-bold text-gray-800 mb-4">{{ $t('garden.expand') || 'Expandir Jardín' }}</h3>
         
         <div class="space-y-4">
           <div 
@@ -108,11 +108,11 @@
             <div class="flex justify-between items-center">
               <div>
                 <div class="font-medium">{{ layout.name }}</div>
-                <div class="text-sm text-gray-600">{{ layout.slots }} espacios</div>
+                <div class="text-sm text-gray-600">{{ layout.slots }} {{ $t('garden.slots') || 'espacios' }}</div>
               </div>
               <div class="text-right">
                 <div class="font-medium">🪙 {{ layout.cost }}</div>
-                <div class="text-xs text-gray-500">monedas</div>
+                <div class="text-xs text-gray-500">{{ $t('shop.coins') }}</div>
               </div>
             </div>
           </div>
@@ -123,7 +123,7 @@
             @click="showUpgradeModal = false"
             class="btn-secondary"
           >
-            Cancelar
+            {{ $t('garden.cancel') || 'Cancelar' }}
           </button>
         </div>
       </div>

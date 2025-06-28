@@ -3,22 +3,22 @@
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-8">
         <h1 class="text-4xl font-bold text-gray-900 mb-4">
-          ⚙️ Configuración
+          ⚙️ {{ $t('settings.title') }}
         </h1>
         <p class="text-lg text-gray-600">
-          Personaliza tu experiencia de productividad
+          {{ $t('settings.description') || 'Personaliza tu experiencia de productividad' }}
         </p>
       </div>
 
       <div class="space-y-8">
         <!-- Configuración del Pomodoro -->
         <div class="card p-6">
-          <h2 class="text-xl font-semibold text-gray-900 mb-6">🍅 Configuración del Pomodoro</h2>
+          <h2 class="text-xl font-semibold text-gray-900 mb-6">🍅 {{ $t('pomodoro.title') }}</h2>
           
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label class="block text-sm font-medium text-gray-700 mb-2">
-                Duración del trabajo (minutos)
+                {{ $t('settings.workDuration') || 'Duración del trabajo (minutos)' }}
               </label>
               <input
                 v-model.number="localSettings.workDuration"
@@ -31,7 +31,7 @@
 
             <div>
               <label class="block text-sm font-medium text-gray-700 mb-2">
-                Descanso corto (minutos)
+                {{ $t('settings.shortBreakDuration') || 'Descanso corto (minutos)' }}
               </label>
               <input
                 v-model.number="localSettings.shortBreakDuration"
@@ -44,7 +44,7 @@
 
             <div>
               <label class="block text-sm font-medium text-gray-700 mb-2">
-                Descanso largo (minutos)
+                {{ $t('settings.longBreakDuration') || 'Descanso largo (minutos)' }}
               </label>
               <input
                 v-model.number="localSettings.longBreakDuration"
@@ -57,7 +57,7 @@
 
             <div>
               <label class="block text-sm font-medium text-gray-700 mb-2">
-                Intervalo para descanso largo
+                {{ $t('settings.longBreakInterval') || 'Intervalo para descanso largo' }}
               </label>
               <input
                 v-model.number="localSettings.longBreakInterval"
@@ -78,7 +78,7 @@
                 class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded"
               />
               <label for="autoStartBreaks" class="ml-2 block text-sm text-gray-900">
-                Iniciar descansos automáticamente
+                {{ $t('settings.autoStartBreaks') || 'Iniciar descansos automáticamente' }}
               </label>
             </div>
 
@@ -90,7 +90,7 @@
                 class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded"
               />
               <label for="autoStartWork" class="ml-2 block text-sm text-gray-900">
-                Iniciar trabajo automáticamente después del descanso
+                {{ $t('settings.autoStartWork') || 'Iniciar trabajo automáticamente después del descanso' }}
               </label>
             </div>
 
@@ -102,7 +102,7 @@
                 class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded"
               />
               <label for="soundEnabled" class="ml-2 block text-sm text-gray-900">
-                Habilitar sonidos
+                {{ $t('settings.soundEnabled') || 'Habilitar sonidos' }}
               </label>
             </div>
 
@@ -114,7 +114,7 @@
                 class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded"
               />
               <label for="notificationsEnabled" class="ml-2 block text-sm text-gray-900">
-                Habilitar notificaciones del navegador
+                {{ $t('settings.notificationsEnabled') || 'Habilitar notificaciones del navegador' }}
               </label>
             </div>
           </div>
@@ -124,32 +124,32 @@
               @click="saveSettings"
               class="btn-primary mr-3"
             >
-              Guardar cambios
+              {{ $t('settings.saveChanges') || 'Guardar cambios' }}
             </button>
             <button
               @click="resetToDefaults"
               class="btn-secondary"
             >
-              Restaurar valores predeterminados
+              {{ $t('settings.restoreDefaults') || 'Restaurar valores predeterminados' }}
             </button>
           </div>
         </div>
 
         <!-- Información de la cuenta -->
         <div class="card p-6">
-          <h2 class="text-xl font-semibold text-gray-900 mb-6">👤 Información de la cuenta</h2>
+          <h2 class="text-xl font-semibold text-gray-900 mb-6">👤 {{ $t('account.title') }}</h2>
           
           <div v-if="authStore.currentUser" class="space-y-4">
             <div>
               <label class="block text-sm font-medium text-gray-700 mb-1">
-                Correo electrónico
+                {{ $t('account.email') || 'Correo electrónico' }}
               </label>
               <p class="text-gray-900">{{ authStore.currentUser.email }}</p>
             </div>
 
             <div>
               <label class="block text-sm font-medium text-gray-700 mb-1">
-                Nombre
+                {{ $t('account.name') || 'Nombre' }}
               </label>
               <p class="text-gray-900">
                 {{ authStore.currentUser.displayName || 'No especificado' }}
@@ -158,7 +158,7 @@
 
             <div>
               <label class="block text-sm font-medium text-gray-700 mb-1">
-                Monedas actuales
+                {{ $t('account.coins') || 'Monedas actuales' }}
               </label>
               <p class="text-2xl font-bold text-accent-600">
                 🪙 {{ authStore.currentUser.coins }}
@@ -167,7 +167,7 @@
 
             <div>
               <label class="block text-sm font-medium text-gray-700 mb-1">
-                Total de sesiones completadas
+                {{ $t('account.totalSessions') || 'Total de sesiones completadas' }}
               </label>
               <p class="text-lg font-semibold text-primary-600">
                 {{ authStore.currentUser.totalSessions }}
@@ -176,7 +176,7 @@
 
             <div>
               <label class="block text-sm font-medium text-gray-700 mb-1">
-                Racha actual
+                {{ $t('account.currentStreak') || 'Racha actual' }}
               </label>
               <p class="text-lg font-semibold text-orange-600">
                 🔥 {{ authStore.currentUser.currentStreak }} días
@@ -185,7 +185,7 @@
 
             <div>
               <label class="block text-sm font-medium text-gray-700 mb-1">
-                Miembro desde
+                {{ $t('account.memberSince') || 'Miembro desde' }}
               </label>
               <p class="text-gray-600">
                 {{ formatDate(authStore.currentUser.createdAt) }}
@@ -196,16 +196,16 @@
 
         <!-- Notificaciones -->
         <div class="card p-6">
-          <h2 class="text-xl font-semibold text-gray-900 mb-6">🔔 Notificaciones</h2>
+          <h2 class="text-xl font-semibold text-gray-900 mb-6">🔔 {{ $t('notifications.title') }}</h2>
           
           <div class="space-y-4">
             <div class="flex items-center justify-between">
               <div>
                 <h3 class="text-sm font-medium text-gray-900">
-                  Notificaciones del navegador
+                  {{ $t('notifications.browser') || 'Notificaciones del navegador' }}
                 </h3>
                 <p class="text-sm text-gray-500">
-                  Recibe alertas cuando terminen las sesiones
+                  {{ $t('notifications.sessionAlerts') || 'Recibe alertas cuando terminen las sesiones' }}
                 </p>
               </div>
               <div class="ml-4">
@@ -217,20 +217,20 @@
                     'opacity-50 cursor-not-allowed': notificationPermission === 'granted'
                   }"
                 >
-                  {{ notificationPermission === 'granted' ? 'Habilitadas' : 'Habilitar' }}
+                  {{ notificationPermission === 'granted' ? $t('notifications.enabled') : $t('notifications.enable') }}
                 </button>
               </div>
             </div>
 
             <div class="text-sm text-gray-600">
               <p v-if="notificationPermission === 'granted'" class="text-green-600">
-                ✅ Las notificaciones están habilitadas
+                ✅ {{ $t('notifications.granted') }}
               </p>
               <p v-else-if="notificationPermission === 'denied'" class="text-red-600">
-                ❌ Las notificaciones están bloqueadas. Habilítalas en la configuración del navegador.
+                ❌ {{ $t('notifications.blocked') }}
               </p>
               <p v-else class="text-yellow-600">
-                ⚠️ Haz clic en "Habilitar" para recibir notificaciones
+                ⚠️ {{ $t('notifications.clickEnable') }}
               </p>
             </div>
           </div>

@@ -4,11 +4,10 @@
       <!-- Header de bienvenida -->
       <div class="text-center mb-8">
         <h1 class="text-4xl font-bold text-gray-900 mb-4">
-          ¡Bienvenido a tu Jardín de Productividad! 🌱
+          {{ $t('welcome') }} 🌱
         </h1>
         <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-          Usa la técnica Pomodoro para ser más productivo y haz crecer tu jardín virtual.
-          Cada sesión completada te dará monedas para comprar nuevas plantas.
+          {{ $t('home.description') || 'Usa la técnica Pomodoro para ser más productivo y haz crecer tu jardín virtual. Cada sesión completada te dará monedas para comprar nuevas plantas.' }}
         </p>
       </div>
 
@@ -20,15 +19,15 @@
           
           <!-- Estadísticas rápidas -->
           <div class="card p-6">
-            <h3 class="text-lg font-semibold text-gray-800 mb-4">📊 Estadísticas de hoy</h3>
+            <h3 class="text-lg font-semibold text-gray-800 mb-4">📊 {{ $t('home.stats') || 'Estadísticas de hoy' }}</h3>
             <div class="grid grid-cols-2 gap-4">
               <div class="text-center p-4 bg-primary-50 rounded-lg">
                 <div class="text-2xl font-bold text-primary-600">{{ sessionCount }}</div>
-                <div class="text-sm text-gray-600">Sesiones</div>
+                <div class="text-sm text-gray-600">{{ $t('home.sessions') || 'Sesiones' }}</div>
               </div>
               <div class="text-center p-4 bg-accent-50 rounded-lg">
                 <div class="text-2xl font-bold text-accent-600">{{ authStore.currentUser?.coins || 0 }}</div>
-                <div class="text-sm text-gray-600">Monedas</div>
+                <div class="text-sm text-gray-600">{{ $t('shop.coins') }}</div>
               </div>
             </div>
           </div>

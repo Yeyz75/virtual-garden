@@ -17,21 +17,21 @@
               class="nav-link"
               :class="{ 'text-primary-600': $route.name === 'Home' }"
             >
-              Timer
+              {{ $t('pomodoro.title') }}
             </router-link>
             <router-link
               to="/garden"
               class="nav-link"
               :class="{ 'text-primary-600': $route.name === 'Garden' }"
             >
-              Jardín
+              {{ $t('garden.title') }}
             </router-link>
             <router-link
               to="/shop"
               class="nav-link"
               :class="{ 'text-primary-600': $route.name === 'Shop' }"
             >
-              Tienda
+              {{ $t('shop.title') }}
             </router-link>
           </nav>
         </div>
@@ -69,13 +69,13 @@
                   to="/settings"
                   class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                 >
-                  Configuración
+                  {{ $t('settings.title') }}
                 </router-link>
                 <button
                   @click="handleLogout"
                   class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                 >
-                  Cerrar sesión
+                  {{ $t('settings.logout') }}
                 </button>
               </div>
             </div>
@@ -93,7 +93,7 @@
           :class="{ 'text-primary-600': $route.name === 'Home' }"
         >
           <span class="text-lg mb-1">⏰</span>
-          Timer
+          {{ $t('pomodoro.title') }}
         </router-link>
         <router-link
           to="/garden"
@@ -101,7 +101,7 @@
           :class="{ 'text-primary-600': $route.name === 'Garden' }"
         >
           <span class="text-lg mb-1">🌱</span>
-          Jardín
+          {{ $t('garden.title') }}
         </router-link>
         <router-link
           to="/shop"
@@ -109,7 +109,7 @@
           :class="{ 'text-primary-600': $route.name === 'Shop' }"
         >
           <span class="text-lg mb-1">🛍️</span>
-          Tienda
+          {{ $t('shop.title') }}
         </router-link>
       </nav>
     </div>

@@ -4,10 +4,10 @@
       <div class="text-center">
         <div class="text-6xl mb-4">🌱</div>
         <h2 class="text-3xl font-bold text-gray-900">
-          Únete al Jardín Virtual
+          {{ $t('register.title') }}
         </h2>
         <p class="mt-2 text-gray-600">
-          Crea tu cuenta y comienza tu viaje de productividad
+          {{ $t('register.description') || 'Crea tu cuenta y comienza tu viaje de productividad' }}
         </p>
       </div>
 
@@ -15,7 +15,7 @@
         <form @submit.prevent="handleRegister" class="space-y-6">
           <div>
             <label for="displayName" class="block text-sm font-medium text-gray-700 mb-2">
-              Nombre (opcional)
+              {{ $t('register.name') }} ({{ $t('register.optional') || 'opcional' }})
             </label>
             <input
               id="displayName"
@@ -28,7 +28,7 @@
 
           <div>
             <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
-              Correo electrónico
+              {{ $t('register.email') }}
             </label>
             <input
               id="email"
@@ -46,7 +46,7 @@
 
           <div>
             <label for="password" class="block text-sm font-medium text-gray-700 mb-2">
-              Contraseña
+              {{ $t('register.password') }}
             </label>
             <input
               id="password"
@@ -64,7 +64,7 @@
 
           <div>
             <label for="confirmPassword" class="block text-sm font-medium text-gray-700 mb-2">
-              Confirmar contraseña
+              {{ $t('register.confirmPassword') }}
             </label>
             <input
               id="confirmPassword"

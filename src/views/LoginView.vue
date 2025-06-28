@@ -4,10 +4,10 @@
       <div class="text-center">
         <div class="text-6xl mb-4">🌱</div>
         <h2 class="text-3xl font-bold text-gray-900">
-          Jardín Virtual de Productividad
+          {{ $t('login.title') }}
         </h2>
         <p class="mt-2 text-gray-600">
-          Inicia sesión para continuar cultivando tu productividad
+          {{ $t('login.description') || 'Inicia sesión para continuar cultivando tu productividad' }}
         </p>
       </div>
 
@@ -15,7 +15,7 @@
         <form @submit.prevent="handleLogin" class="space-y-6">
           <div>
             <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
-              Correo electrónico
+              {{ $t('login.email') }}
             </label>
             <input
               id="email"
@@ -33,7 +33,7 @@
 
           <div>
             <label for="password" class="block text-sm font-medium text-gray-700 mb-2">
-              Contraseña
+              {{ $t('login.password') }}
             </label>
             <input
               id="password"
