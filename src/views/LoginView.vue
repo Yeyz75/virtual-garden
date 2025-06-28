@@ -98,7 +98,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive } from 'vue'
+import { ref, reactive, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '../stores/auth'
 import { useNotificationStore } from '../stores/notifications'
@@ -122,20 +122,28 @@ const clearErrors = () => {
   errors.general = ''
 }
 
+// Watch para navegación reactiva tras login exitoso y carga completa del usuario
+watch(
+  () => [authStore.isAuthenticated, authStore.loading],
+  ([isAuthenticated, loading]) => {
+    if (isAuthenticated && !loading) {
+      router.push('/')
+    }
+  },
+  { immediate: true }
+)
+
 const handleLogin = async () => {
   clearErrors()
   loading.value = true
 
   try {
     await authStore.login(email.value, password.value)
-    
     notificationStore.addNotification({
       title: '¡Bienvenido de vuelta!',
       message: 'Has iniciado sesión correctamente',
       type: 'success'
     })
-    
-    router.push('/')
   } catch (error: any) {
     console.error('Login error:', error)
     
@@ -171,17 +179,13 @@ const handleLogin = async () => {
 
 const handleGoogleLogin = async () => {
   loading.value = true
-  
   try {
     await authStore.loginWithGoogle()
-    
     notificationStore.addNotification({
       title: '¡Bienvenido!',
       message: 'Has iniciado sesión con Google correctamente',
       type: 'success'
     })
-    
-    router.push('/')
   } catch (error: any) {
     console.error('Google login error:', error)
     
