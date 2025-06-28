@@ -77,7 +77,7 @@
                 type="checkbox"
                 class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded"
               />
-              <label for="autoStartBreaks" class="ml-2 block text-sm text-gray-900">
+              <label for="autoStartBreaks" class="ml-2 block text-sm text-gray-900" style="color: var(--text-secondary);">
                 {{ $t('settings.autoStartBreaks') || 'Iniciar descansos automáticamente' }}
               </label>
             </div>
@@ -89,7 +89,7 @@
                 type="checkbox"
                 class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded"
               />
-              <label for="autoStartWork" class="ml-2 block text-sm text-gray-900">
+              <label for="autoStartWork" class="ml-2 block text-sm text-gray-900" style="color: var(--text-secondary);">
                 {{ $t('settings.autoStartWork') || 'Iniciar trabajo automáticamente después del descanso' }}
               </label>
             </div>
@@ -101,7 +101,7 @@
                 type="checkbox"
                 class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded"
               />
-              <label for="soundEnabled" class="ml-2 block text-sm text-gray-900">
+              <label for="soundEnabled" class="ml-2 block text-sm text-gray-900" style="color: var(--text-secondary);">
                 {{ $t('settings.soundEnabled') || 'Habilitar sonidos' }}
               </label>
             </div>
@@ -113,7 +113,7 @@
                 type="checkbox"
                 class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded"
               />
-              <label for="notificationsEnabled" class="ml-2 block text-sm text-gray-900">
+              <label for="notificationsEnabled" class="ml-2 block text-sm text-gray-900" style="color: var(--text-secondary);">
                 {{ $t('settings.notificationsEnabled') || 'Habilitar notificaciones del navegador' }}
               </label>
             </div>
@@ -122,7 +122,7 @@
           <div class="mt-6">
             <button
               @click="saveSettings"
-              class="btn-primary mr-3"
+              class="btn-primary mr-3" 
             >
               {{ $t('settings.saveChanges') || 'Guardar cambios' }}
             </button>

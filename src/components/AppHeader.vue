@@ -46,6 +46,26 @@
                 {{ authStore.currentUser.coins }}
               </span>
             </div>
+
+          <!-- Botón modo oscuro -->
+          <button
+            @click="toggleTheme"
+            class="theme-toggle ml-2 relative overflow-hidden"
+            :aria-label="isDark ? $t('accessibility.lightMode') : $t('accessibility.darkMode')"
+            :title="isDark ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'"
+          >
+            <div class="flex items-center gap-2 px-3 py-2 rounded-full transition-all duration-300"
+                 :class="isDark ? 'bg-gray-800 text-yellow-300' : 'bg-yellow-100 text-gray-800'">
+              <transition name="icon" mode="out-in">
+                <span v-if="isDark" key="moon" class="text-lg">🌙</span>
+                <span v-else key="sun" class="text-lg">☀️</span>
+              </transition>
+              <span class="text-sm font-medium hidden sm:inline">
+                {{ isDark ? 'Modo claro' : 'Modo oscuro' }}
+              </span>
+            </div>
+          </button>
+          <!-- Fin botón modo oscuro -->
             
             <div class="relative">
               <button
@@ -81,26 +101,6 @@
               </div>
             </div>
           </div>
-
-          <!-- Botón modo oscuro -->
-          <button
-            @click="toggleTheme"
-            class="theme-toggle ml-2 relative overflow-hidden"
-            :aria-label="isDark ? $t('accessibility.lightMode') : $t('accessibility.darkMode')"
-            :title="isDark ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'"
-          >
-            <div class="flex items-center gap-2 px-3 py-2 rounded-full transition-all duration-300"
-                 :class="isDark ? 'bg-gray-800 text-yellow-300' : 'bg-yellow-100 text-gray-800'">
-              <transition name="icon" mode="out-in">
-                <span v-if="isDark" key="moon" class="text-lg">🌙</span>
-                <span v-else key="sun" class="text-lg">☀️</span>
-              </transition>
-              <span class="text-sm font-medium hidden sm:inline">
-                {{ isDark ? 'Modo claro' : 'Modo oscuro' }}
-              </span>
-            </div>
-          </button>
-          <!-- Fin botón modo oscuro -->
         </div>
       </div>
     </div>
