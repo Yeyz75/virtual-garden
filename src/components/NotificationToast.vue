@@ -5,7 +5,7 @@
         <div
           v-for="notification in notifications"
           :key="notification.id"
-          class="notification-toast max-w-sm w-full shadow-lg rounded-lg pointer-events-auto overflow-hidden"
+          class="notification-toast max-w-sm w-full shadow-lg rounded-xl pointer-events-auto overflow-hidden border"
           :class="getNotificationClass(notification.type)"
           :style="{ 
             background: 'var(--bg-secondary)', 
@@ -14,20 +14,21 @@
           }"
         >
           <div class="p-4">
-            <div class="flex items-start">
-              <div class="flex-shrink-0">
-                <component :is="getIcon(notification.type)" class="h-6 w-6" />
+            <div class="flex items-start gap-3">
+              <div class="flex-shrink-0 mt-0.5">
+                <component :is="getIcon(notification.type)" class="h-5 w-5" :class="getIconColor(notification.type)" />
               </div>
-              <div class="ml-3 w-0 flex-1 pt-0.5">
-                <p class="text-sm font-medium">{{ notification.title }}</p>
-                <p class="mt-1 text-sm">{{ notification.message }}</p>
+              <div class="flex-1 min-w-0">
+                <p class="text-sm font-semibold leading-tight mb-1">{{ notification.title }}</p>
+                <p class="text-xs leading-relaxed opacity-90">{{ notification.message }}</p>
               </div>
-              <div class="ml-4 flex-shrink-0 flex">
+              <div class="flex-shrink-0 ml-2">
                 <button
-                  class="rounded-md inline-flex text-gray-400 hover:text-gray-500 focus:outline-none"
+                  class="rounded-lg p-1 hover:bg-black/5 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2"
+                  :class="getCloseButtonClass(notification.type)"
                   @click="removeNotification(notification.id)"
                 >
-                  <XMarkIcon class="h-5 w-5" />
+                  <XMarkIcon class="h-4 w-4" />
                 </button>
               </div>
             </div>
@@ -54,10 +55,30 @@ const { notifications, removeNotification } = notificationStore
 
 const getNotificationClass = (type: string) => {
   const classes = {
-    success: 'border-2 notification-success',
-    info: 'border-2 notification-info', 
-    warning: 'border-2 notification-warning',
-    error: 'border-2 notification-error'
+    success: 'border-l-4 border-l-green-500 notification-success',
+    info: 'border-l-4 border-l-blue-500 notification-info', 
+    warning: 'border-l-4 border-l-yellow-500 notification-warning',
+    error: 'border-l-4 border-l-red-500 notification-error'
+  }
+  return classes[type as keyof typeof classes] || classes.info
+}
+
+const getIconColor = (type: string) => {
+  const colors = {
+    success: 'text-green-500',
+    info: 'text-blue-500',
+    warning: 'text-yellow-500',
+    error: 'text-red-500'
+  }
+  return colors[type as keyof typeof colors] || colors.info
+}
+
+const getCloseButtonClass = (type: string) => {
+  const classes = {
+    success: 'focus:ring-green-500',
+    info: 'focus:ring-blue-500',
+    warning: 'focus:ring-yellow-500',
+    error: 'focus:ring-red-500'
   }
   return classes[type as keyof typeof classes] || classes.info
 }
@@ -75,46 +96,67 @@ const getIcon = (type: string) => {
 
 <style scoped>
 .notification-toast {
-  backdrop-filter: blur(10px);
-  box-shadow: 0 10px 25px var(--shadow-medium);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  animation: slideIn 0.3s ease-out;
 }
 
 .notification-success {
-  border-color: var(--success);
-  background: color-mix(in srgb, var(--success) 10%, var(--bg-secondary));
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, rgba(16, 185, 129, 0.02) 100%);
 }
 
 .notification-info {
-  border-color: var(--info);
-  background: color-mix(in srgb, var(--info) 10%, var(--bg-secondary));
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(59, 130, 246, 0.02) 100%);
 }
 
 .notification-warning {
-  border-color: var(--warning);
-  background: color-mix(in srgb, var(--warning) 10%, var(--bg-secondary));
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.05) 0%, rgba(245, 158, 11, 0.02) 100%);
 }
 
 .notification-error {
-  border-color: var(--error);
-  background: color-mix(in srgb, var(--error) 10%, var(--bg-secondary));
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.05) 0%, rgba(239, 68, 68, 0.02) 100%);
 }
 
-/* Fallback para navegadores que no soportan color-mix */
-@supports not (color: color-mix(in srgb, red, blue)) {
-  .notification-success {
+/* Fallback para navegadores que no soportan backdrop-filter */
+@supports not (backdrop-filter: blur(12px)) {
+  .notification-toast {
     background: var(--bg-secondary);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
   }
-  
-  .notification-info {
-    background: var(--bg-secondary);
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(100%) scale(0.95);
   }
-  
-  .notification-warning {
-    background: var(--bg-secondary);
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
   }
-  
-  .notification-error {
-    background: var(--bg-secondary);
-  }
+}
+
+/* Mejoras para modo oscuro */
+[data-theme="dark"] .notification-toast {
+  background: rgba(30, 41, 59, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .notification-success {
+  background: linear-gradient(135deg, rgba(52, 211, 153, 0.1) 0%, rgba(52, 211, 153, 0.05) 100%);
+}
+
+[data-theme="dark"] .notification-info {
+  background: linear-gradient(135deg, rgba(96, 165, 250, 0.1) 0%, rgba(96, 165, 250, 0.05) 100%);
+}
+
+[data-theme="dark"] .notification-warning {
+  background: linear-gradient(135deg, rgba(251, 191, 36, 0.1) 0%, rgba(251, 191, 36, 0.05) 100%);
+}
+
+[data-theme="dark"] .notification-error {
+  background: linear-gradient(135deg, rgba(248, 113, 113, 0.1) 0%, rgba(248, 113, 113, 0.05) 100%);
 }
 </style>
