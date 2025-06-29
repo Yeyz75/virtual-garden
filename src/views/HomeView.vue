@@ -46,25 +46,43 @@
                 Ver completo →
               </router-link>
             </div>
-            
-            <!-- Mini vista del jardín -->
+            <!-- Mini vista del jardín sincronizada -->
             <div class="grid grid-cols-4 gap-2 mb-4">
               <div
-                v-for="i in 16"
-                :key="i"
-                class="aspect-square bg-gradient-to-br from-amber-100 to-amber-200 rounded border border-amber-300 flex items-center justify-center"
+                v-for="position in 16"
+                :key="position"
+                class="aspect-square bg-gradient-to-br from-amber-100 to-amber-200 rounded border border-amber-300 flex items-center justify-center relative overflow-hidden"
+                :class="{
+                  'ring-2 ring-green-400': gardenStore.getPlantAtPosition(position - 1),
+                  'hover:scale-105 transition-transform duration-200': gardenStore.getPlantAtPosition(position - 1)
+                }"
               >
-                <span class="text-lg">
-                  {{ getRandomPlant(i) }}
-                </span>
+                <div v-if="gardenStore.getPlantAtPosition(position - 1)" class="relative">
+                  <span class="text-lg">
+                    {{ getPlantEmoji(position - 1) }}
+                  </span>
+                  <!-- Indicador de agua -->
+                  <div 
+                    v-if="gardenStore.getPlantWaterLevel(position - 1) < 50"
+                    class="absolute -top-1 -right-1 text-xs opacity-70"
+                  > 
+                    💧
+                  </div>
+                </div>
+                <div v-else class="text-lg text-gray-400">
+                  ➕
+                </div>
               </div>
             </div>
-            
-            <p class="text-sm text-gray-600 text-center" style="color: var(--text-secondary);">
-              Completa sesiones de trabajo para ganar plantas y hacer crecer tu jardín
+            <!-- Información del jardín -->
+            <div class="flex justify-between items-center text-sm mb-3" style="color: var(--text-secondary);">
+              <span>🌱 {{ gardenStore.totalPlants }} plantas cultivadas</span>
+              <span>🪙 {{ authStore.currentUser?.coins || 0 }} monedas</span>
+            </div>
+            <p class="text-sm text-center" style="color: var(--text-secondary);">
+              {{ getGardenMessage() }}
             </p>
           </div>
-
           <!-- Acciones rápidas -->
           <div class="card p-6">
             <h3 class="text-lg font-semibold text-gray-800 mb-4" style="color: var(--text-primary);">⚡ Acciones rápidas</h3>
@@ -102,13 +120,15 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, onMounted } from 'vue'
 import { useAuthStore } from '../stores/auth'
 import { usePomodoroStore } from '../stores/pomodoro'
+import { useGardenStore } from '../stores/garden'
 import PomodoroTimer from '../components/PomodoroTimer.vue'
 
 const authStore = useAuthStore()
 const pomodoroStore = usePomodoroStore()
+const gardenStore = useGardenStore()
 
 const { sessionCount } = pomodoroStore
 
@@ -125,14 +145,30 @@ const dailyTip = computed(() => {
   return tips[dayOfYear % tips.length]
 })
 
-const gardenPreview = ['🌻', '🌹', '🌵', '🌸', '🌿', '🍀', '🌳', '🌱']
+// Sincronizar el jardín al cargar el home
+onMounted(() => {
+  gardenStore.loadUserGarden()
+})
 
-const getRandomPlant = (position: number) => {
-  // Simular algunas plantas plantadas basado en la posición
-  const hasPlant = (position + (authStore.currentUser?.totalSessions || 0)) % 4 === 0
-  if (hasPlant) {
-    return gardenPreview[position % gardenPreview.length]
+// Obtener el emoji de la planta en una posición
+const getPlantEmoji = (position: number) => {
+  const plant = gardenStore.getPlantAtPosition(position)
+  if (!plant) return ''
+  const plantInfo = gardenStore.availablePlants.find(p => p.id === plant.plantId)
+  return plantInfo?.emoji || '🌱'
+}
+
+// Mensaje según el estado del jardín
+const getGardenMessage = () => {
+  if (gardenStore.totalPlants === 0) {
+    return "¡Aún no tienes plantas! Completa sesiones para ganar monedas y compra tu primera planta.";
   }
-  return '➕'
+  if (gardenStore.totalPlants < 4) {
+    return "¡Tu jardín está comenzando a florecer! Sigue trabajando para llenarlo de vida.";
+  }
+  if (gardenStore.totalPlants < 10) {
+    return "¡Buen progreso! Cada sesión te acerca a un jardín más colorido.";
+  }
+  return "¡Tu jardín es impresionante! Sigue cultivando tu productividad.";
 }
 </script>
