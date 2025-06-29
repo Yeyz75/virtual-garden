@@ -69,7 +69,7 @@
             <div class="flex items-center justify-center text-sm">
               <span class="mr-1">🪙</span>
               <span :class="{ 'text-red-500': !canAfford(plant) }">
-                {{ plant.cost }}
+                {{ plant.baseCost }}
               </span>
             </div>
             <div class="text-xs mt-1">
@@ -132,7 +132,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useGardenStore } from '../stores/garden'
 import { useAuthStore } from '../stores/auth'
 import { useNotificationStore } from '../stores/notifications'
@@ -168,7 +168,7 @@ const layouts = {
 }
 
 const canAfford = (plant: Plant) => {
-  return authStore.currentUser ? authStore.currentUser.coins >= plant.cost : false
+  return authStore.currentUser ? authStore.currentUser.coins >= plant.baseCost : false
 }
 
 const selectPlant = (plant: Plant) => {
@@ -178,10 +178,11 @@ const selectPlant = (plant: Plant) => {
 }
 
 const selectSlot = async (position: number) => {
-  if (!selectedPlant.value || occupiedSlots.value.includes(position)) return
+  if (!selectedPlant.value || occupiedSlots.includes(position)) return
 
   const success = await plantInGarden(selectedPlant.value.id, position)
   if (success) {
+    const plantName = selectedPlant.value.name
     selectedPlant.value = null
     
     // Animación de plantado
@@ -197,7 +198,7 @@ const selectSlot = async (position: number) => {
 
     notificationStore.addNotification({
       title: '¡Planta agregada!',
-      message: `Has plantado ${selectedPlant.value.name} en tu jardín`,
+      message: `Has plantado ${plantName} en tu jardín`,
       type: 'success'
     })
   }

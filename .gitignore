@@ -13,10 +13,6 @@ dist-ssr
 *.local
 .env
 
-# Vitest
-coverage/
-.vitest/
-
 # Prettier
 .prettiercache
 

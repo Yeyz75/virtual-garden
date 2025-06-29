@@ -151,7 +151,14 @@ const purchaseItem = async (item: ShopItem) => {
     if (item.costType === 'coins') {
       success = await shopStore.purchaseWithCoins(item.id)
     } else {
-      success = await shopStore.purchaseWithPayPal(item)
+      // PayPal functionality not implemented yet
+      // success = await shopStore.purchaseWithPayPal(item)
+      notificationStore.addNotification({
+        title: 'Función no disponible',
+        message: 'Las compras con PayPal no están disponibles aún',
+        type: 'warning'
+      })
+      return
     }
 
     if (success) {
