@@ -221,6 +221,11 @@ export const useGardenStore = defineStore("garden", () => {
     return { ...gardenPlant, ...plantData };
   };
 
+  const getPlantWaterLevel = (position: number) => {
+    const plant = getPlantAtPosition(position);
+    return plant?.waterLevel ?? 100;
+  };
+
   return {
     userGarden,
     availablePlants,
@@ -231,5 +236,6 @@ export const useGardenStore = defineStore("garden", () => {
     plantInGarden,
     upgradeGarden,
     getPlantAtPosition,
+    getPlantWaterLevel,
   };
 });

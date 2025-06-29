@@ -18,21 +18,21 @@
               class="nav-link"
               :class="{ 'text-primary-600': $route.name === 'Home' }"
             >
-              {{ $t('pomodoro.title') }}
+              Temporizador
             </router-link>
             <router-link
               to="/garden"
               class="nav-link"
               :class="{ 'text-primary-600': $route.name === 'Garden' }"
             >
-              {{ $t('garden.title') }}
+              Jardín
             </router-link>
             <router-link
               to="/shop"
               class="nav-link"
               :class="{ 'text-primary-600': $route.name === 'Shop' }"
             >
-              {{ $t('shop.title') }}
+              Tienda
             </router-link>
           </nav>
         </div>
@@ -47,25 +47,21 @@
               </span>
             </div>
 
-          <!-- Botón modo oscuro -->
-          <button
-            @click="toggleTheme"
-            class="theme-toggle ml-2 relative overflow-hidden"
-            :aria-label="isDark ? $t('accessibility.lightMode') : $t('accessibility.darkMode')"
-            :title="isDark ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'"
-          >
-            <div class="flex items-center gap-2 px-3 py-2 rounded-full transition-all duration-300"
-                 :class="isDark ? 'bg-gray-800 text-yellow-300' : 'bg-yellow-100 text-gray-800'">
-              <transition name="icon" mode="out-in">
-                <span v-if="isDark" key="moon" class="text-lg">🌙</span>
-                <span v-else key="sun" class="text-lg">☀️</span>
-              </transition>
-              <span class="text-sm font-medium hidden sm:inline">
-                {{ isDark ? 'Modo claro' : 'Modo oscuro' }}
-              </span>
-            </div>
-          </button>
-          <!-- Fin botón modo oscuro -->
+            <!-- Botón modo oscuro -->
+            <button
+              @click="toggleTheme"
+              class="theme-toggle ml-2 relative overflow-hidden"
+              title="Cambiar tema"
+            >
+              <div class="flex items-center gap-2 px-3 py-2 rounded-full transition-all duration-300"
+                   :class="isDark ? 'bg-gray-800 text-yellow-300' : 'bg-yellow-100 text-gray-800'">
+                <span v-if="isDark" class="text-lg">🌙</span>
+                <span v-else class="text-lg">☀️</span>
+                <span class="text-sm font-medium hidden sm:inline">
+                  {{ isDark ? 'Claro' : 'Oscuro' }}
+                </span>
+              </div>
+            </button>
             
             <div class="relative">
               <button
@@ -77,7 +73,7 @@
                     {{ getUserInitials() }}
                   </span>
                 </div>
-                <ChevronDownIcon class="h-4 w-4 text-gray-500" />
+                <span class="text-gray-500">▼</span>
               </button>
 
               <!-- Dropdown menu -->
@@ -90,13 +86,13 @@
                   to="/settings"
                   class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                 >
-                  {{ $t('settings.title') }}
+                  Configuración
                 </router-link>
                 <button
                   @click="handleLogout"
                   class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                 >
-                  {{ $t('settings.logout') }}
+                  Cerrar sesión
                 </button>
               </div>
             </div>
@@ -114,7 +110,7 @@
           :class="{ 'text-primary-600': $route.name === 'Home' }"
         >
           <span class="text-lg mb-1">⏰</span>
-          {{ $t('pomodoro.title') }}
+          Temporizador
         </router-link>
         <router-link
           to="/garden"
@@ -122,7 +118,7 @@
           :class="{ 'text-primary-600': $route.name === 'Garden' }"
         >
           <span class="text-lg mb-1">🌱</span>
-          {{ $t('garden.title') }}
+          Jardín
         </router-link>
         <router-link
           to="/shop"
@@ -130,7 +126,7 @@
           :class="{ 'text-primary-600': $route.name === 'Shop' }"
         >
           <span class="text-lg mb-1">🛍️</span>
-          {{ $t('shop.title') }}
+          Tienda
         </router-link>
       </nav>
     </div>
@@ -140,7 +136,6 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
-import { ChevronDownIcon } from '@heroicons/vue/24/outline'
 import { useAuthStore } from '../stores/auth'
 import { useDarkMode } from '@/composables/useDarkMode'
 
